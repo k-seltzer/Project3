@@ -1,20 +1,20 @@
 #include <iostream>
-using namespace std;
 #include <vector>
 #include <list>
+#pragma once
+using namespace std;
 
-class HashMap
-{
-    struct value
+struct value {
+    pair<vector<int>, string> delay;
+
+    value(vector<int> stats, string airlines)
     {
-        pair<vector<int>, string> delay;
+        delay.first = stats;
+        delay.second = airlines;
+    }
+};
 
-        value(vector<int> stats, string airlines)
-        {
-            delay.first = stats;
-            delay.second = airlines;
-        }
-    };
+class HashMap {
 
 private:
     vector<list<pair<string, value>>> map;

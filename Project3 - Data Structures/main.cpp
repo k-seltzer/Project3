@@ -9,10 +9,10 @@ using namespace std;
 
 vector <string> heapSort(HashMap dataset) {
 	MinHeap minHeap;
-	for (auto i = dataset.begin(); i != dataset.end(); i++) {
-		for (auto j = (*i).begin(); j != (*i).end(); j++) {
+	for (auto i = dataset.begin(); i != dataset.end(); ++i) {
+		for (auto j = (*i).begin(); j != (*i).end(); ++j) {
 			int total = 0;
-			for (auto k = ((*j).first).begin(); k != ((*j).first).end(); k++) {
+			for (auto k = ((*j).first).begin(); k != ((*j).first).end(); ++k) {
 				total += *k;
 			}
 			minHeap.insert((*j).first, total);
