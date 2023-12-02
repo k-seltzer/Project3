@@ -20,7 +20,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\..\..\Downloads\airlines.csv">
+    <None Include="airlines.csv">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

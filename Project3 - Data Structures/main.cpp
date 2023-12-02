@@ -10,8 +10,13 @@ int main() {
 	string line, token;
 	queue <string> lines;
 	if (dataset.is_open()) {
+		getline(dataset, line);
 		while (getline(dataset, line)) {
-			lines.push(line);
+			istringstream stream(line);
+			for (int i = 0; i < 23; i++) {
+				getline(stream, token, ',');
+				lines.push(token);
+			}
 		}
 	}
 	while (!lines.empty()) {
