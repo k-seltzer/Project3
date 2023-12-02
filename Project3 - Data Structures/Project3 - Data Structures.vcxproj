@@ -140,9 +140,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MinHeap.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="airlines.csv" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="HashMap.h" />
+    <ClInclude Include="MinHeap.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
