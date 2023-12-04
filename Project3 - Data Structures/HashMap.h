@@ -23,6 +23,7 @@ private:
     void rehash(int newCap)
     {
         vector<list<pair<string, vector<int>>>> newMap(newCap);
+        capacity = newCap;
         for (auto bucket : map)
         {
             for (auto pair : bucket)
@@ -32,7 +33,6 @@ private:
             }
         }
         map = newMap;
-        capacity = newCap;
     }
 
 public:
@@ -61,10 +61,10 @@ public:
     vector<int> search(string key)
     {
         int index = hash(key);
-        for (auto element : map[index])
+        for (auto element = map[index].begin(); element != map[index].end(); element++)
         {
-            if (element.first == key)
-                return element.second;
+            if (element->first == key)
+                return element->second;
         }
         return vector<int>(0);
     }

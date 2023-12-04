@@ -85,9 +85,19 @@ int main() {
 		}
 	}*/
 	queue <pair<string, int>> min = heapSort(data);
-	while (!(min.empty())) {
+	/*while (!(min.empty())) {
 		cout << min.front().first << ' ' << min.front().second << endl;
 		min.pop();
+	}*/
+	while (!(min.empty())) {
+		vector <int> dataCopy = data.search(min.front().first);
+		int total = 0;
+		for (auto i = dataCopy.begin(); i != dataCopy.end(); ++i) {
+			total += *i;
+		}
+		cout << min.front().first << ' ' << total << endl;
+		min.pop();
 	}
+
 	return 0;
 }
