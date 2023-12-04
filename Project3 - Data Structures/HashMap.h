@@ -4,35 +4,17 @@
 #pragma once
 using namespace std;
 
-struct value {
-    pair<vector<int>, string> delay;
-
-    value(vector<int> stats, string airlines)
-    {
-        delay.first = stats;
-        delay.second = airlines;
-    }
-};
-
 class HashMap {
 
 private:
-    vector<list<pair<string, value>>> map;
+    vector<list<pair<string, vector<int>>>> map;
     int capacity;
     int size;
     double loadFactor;
 
-    HashMap(int cap, double loadFactor = 1.5)
-    {
-        capacity = cap;
-        vector<list<pair<string, value>>> newMap(capacity);
-        map = newMap;
-        size = 0;
-    }
-
     int hash(string key)
     {
-        int prod = 0;
+        int prod = 1;
         for (auto c : key)
             prod *= int(c);
         return prod % capacity;
@@ -40,7 +22,7 @@ private:
 
     void rehash(int newCap)
     {
-        vector<list<pair<string, value>>> newMap(newCap);
+        vector<list<pair<string, vector<int>>>> newMap(newCap);
         for (auto bucket : map)
         {
             for (auto pair : bucket)
@@ -54,9 +36,16 @@ private:
     }
 
 public:
-    void insert(string key, vector<int> stats, string airlines)
+    HashMap(int cap = 10, double loadFactor = 1.5)
     {
-        value delay(stats, airlines);
+        capacity = cap;
+        this->loadFactor = loadFactor;
+        vector<list<pair<string, vector<int>>>> newMap(capacity);
+        map = newMap;
+        size = 0;
+    }
+    void insert(string key, vector<int> stats)
+    {
         if (size >= capacity * loadFactor)
             rehash(capacity * 2);
         int index = hash(key);
@@ -65,24 +54,24 @@ public:
             if (element.first == key)
                 return;
         }
-        map[index].push_back({key, delay});
+        map[index].push_back({ key, stats });
         size++;
     }
 
-    string search(string key)
+    vector<int> search(string key)
     {
         int index = hash(key);
         for (auto element : map[index])
         {
             if (element.first == key)
-                return element.second.delay.second;
+                return element.second;
         }
-        return "Data not in map";
+        return vector<int>(0);
     }
-    vector<list<pair<string, value>>>::iterator begin() {
+    vector<list<pair<string, vector<int>>>>::iterator begin() {
         return map.begin();
     }
-    vector<list<pair<string, value>>>::iterator end() {
+    vector<list<pair<string, vector<int>>>>::iterator end() {
         return map.end();
     }
 };

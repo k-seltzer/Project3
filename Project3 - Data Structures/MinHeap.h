@@ -12,6 +12,7 @@ public:
 	void heapifyup(int index);
 	void heapifydown(int index);
 	void pop();
-	string top();
+	pair<string, int> front();
+	bool empty();
 };
 
